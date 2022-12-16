@@ -1,4 +1,3 @@
-"""--- Day 14: Regolith Reservoir ---"""
 import sys
 import re
 from collections import defaultdict
@@ -126,14 +125,14 @@ def main(test):
 
     sensor_array = Area(input)
 
-    print("Part 1")
-    results = sensor_array.count_line(10 if test else 2_000_000)
-    print(f"Result: {results}")
-    if test:
-        sensor_array.print_grid()
-        expected = 26
-        assert results == expected, f"Expected {expected}, got {results}"
-        print("Test passed")
+    # print("Part 1")
+    # results = sensor_array.count_line(10 if test else 2_000_000)
+    # print(f"Result: {results}")
+    # if test:
+    #     sensor_array.print_grid()
+    #     expected = 26
+    #     assert results == expected, f"Expected {expected}, got {results}"
+    #     print("Test passed")
 
     print("Part 2")
     if test:
