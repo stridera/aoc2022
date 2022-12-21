@@ -31,8 +31,18 @@ def solve(data, part):
         monkeys['humn'] = "THIS WILL THROW AN ERROR IF PART2 CHECKS HUMAN", True
         wanted = calculate(second)
 
+        # Need to figure out if the numbers rise or lower
+        monkeys['humn'] = str(1)
+        test1 = calculate(first)
+        monkeys['humn'] = str(100)
+        test2 = calculate(first)
+
+        increasing = False
+        if test1 > test2:
+            increasing = True
+
         # Lets expand wildly until we find the range
-        low = 1
+        low = 0
         high = 100
         # Rapid growth phase
         while True:
@@ -41,7 +51,7 @@ def solve(data, part):
 
             if test == wanted:
                 return low
-            if test < wanted:
+            if (increasing and test < wanted) or (not increasing and test > wanted):
                 break
             else:
                 low = high
@@ -59,7 +69,7 @@ def solve(data, part):
             test = calculate(first)
             if test == wanted:
                 return middle
-            if test < wanted:
+            if (increasing and test < wanted) or (not increasing and test > wanted):
                 high = middle
             else:
                 low = middle
