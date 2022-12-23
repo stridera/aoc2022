@@ -174,7 +174,6 @@ class Dance:
 
             if self.map[y][x] == "#":
                 return
-            print((y+1, x+1), MOVE_NAME[self.direction])
 
             self.map[y][x] = MOVE_ASCII[self.direction]
             self.position = (y, x)
@@ -323,15 +322,15 @@ def main(test: bool = False):
 
     dance = Dance(map, test)
 
-    # print("Part 1")
-    # results = dance.solve(directions)
-    # print(results)
-    # if test:
-    #     expected = 6032
-    #     assert results == expected, f"Expected {expected}, got {results}"
-    #     print("Test passed")
+    print("Part 1")
+    results = dance.solve(directions)
+    print(results)
+    if test:
+        expected = 6032
+        assert results == expected, f"Expected {expected}, got {results}"
+        print("Test passed")
 
-    # print("Part 2")
+    print("Part 2")
     results = dance.solve(directions, True)
     print(results)
     if test:
