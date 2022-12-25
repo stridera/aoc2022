@@ -48,7 +48,7 @@ MOVE_MAP = {
 class ColdValley:
     def __init__(self, map):
         self.size = (len(map), len(map[0]))
-        self.max = 1000
+        self.max = 350
         stage = []
         for y, line in enumerate(map):
             for x, char in enumerate(line):
@@ -62,6 +62,8 @@ class ColdValley:
             blizzards.append(stage)
             stage = self.move_blizzards(stage)
         self.blizzards = tuple(blizzards)
+
+        self.seen = dict()
 
     def get_blizzard(self, step) -> frozenset[tuple[int, int, DIRECTIONS]]:
         return self.blizzards[step % len(self.blizzards)]
@@ -116,6 +118,13 @@ class ColdValley:
 
         if step > self.max:
             return '', -1
+
+        if ((location, step % len(self.blizzards)) in self.seen and
+                self.seen[(location, step % len(self.blizzards))] < step):
+            # log += f'Already seen this location at a lower step.  Skipping.\n'
+            return '', -1
+
+        self.seen[(location, step % len(self.blizzards))] = step
 
         best = self.max
         best_log = ''
